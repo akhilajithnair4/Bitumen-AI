@@ -14,9 +14,24 @@ from  langchain.chains.qa_with_sources.retrieval import RetrievalQAWithSourcesCh
 import dill
 import streamlit as st
 from dotenv import load_dotenv
-key="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"
-os.environ["OPENAI_API_KEY"] = key
+
+
 load_dotenv()
+
+# Try to get the API key from st.secrets (for deployment) or .env (for local development)
+api_key = os.getenv("OPENAI_API_KEY")
+
+# If no valid API key, ask the user to enter it
+if not api_key:
+    api_key = st.text_input("Please enter your OpenAI API key:", type="password")
+    if not api_key:
+        st.error("No API key provided. Please provide an API key to continue.")
+        st.stop()
+
+# Set API key in environment if necessary (for libraries that use os.environ)
+os.environ['OPENAI_API_KEY'] = api_key
+
+
 
 llm=OpenAI(temperature=0.7,max_tokens=500)
 
