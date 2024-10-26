@@ -35,7 +35,7 @@ os.environ['OPENAI_API_KEY'] = api_key
 
 llm=OpenAI(temperature=0.7,max_tokens=500)
 
-url=["https://atdmco.com/penetration/bitumen-price/","https://www.petronaftco.com/bitumen-price/","https://www.investing.com/news/commodities-news","https://www.investing.com/analysis/forex"]
+url=["https://www.investing.com/charts/forex-charts","https://atdmco.com/penetration/bitumen-price/","https://www.petronaftco.com/bitumen-price/","https://www.investing.com/news/commodities-news"]
 
 loader=UnstructuredURLLoader(urls=url)
 data=loader.load()
